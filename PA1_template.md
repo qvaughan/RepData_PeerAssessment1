@@ -20,8 +20,8 @@ steps_per_date <- data.frame(date=names(steps_per_date), steps=as.vector(steps_p
 ## What is mean total number of steps taken per day?
 
 ```r
-p <- ggplot(data=steps_per_date[!is.na(steps_per_date$steps),], aes(x=date, y=steps)) 
-p <- p + geom_bar(stat="identity") 
+p <- ggplot(data=steps_per_date[!is.na(steps_per_date$steps),], aes(x=steps)) 
+p <- p + geom_histogram() 
 p <- p + xlab("Date")
 p <- p + ylab("Steps")
 p <- p + ggtitle("Total Steps by Day")
@@ -31,6 +31,10 @@ p <- p + theme(
   axis.title = element_text(size=20,face="bold"),
   title = element_text(size=30,face="bold"))
 print(p)
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
@@ -100,8 +104,8 @@ imputed_activity_data[is.na(imputed_activity_data$steps),]$steps <- steps_per_in
 imputed_steps_per_date <- tapply(imputed_activity_data$steps, imputed_activity_data$date, sum)
 imputed_steps_per_date <- data.frame(date=names(imputed_steps_per_date), steps=as.vector(imputed_steps_per_date))
 
-p <- ggplot(data=imputed_steps_per_date, aes(x=date, y=steps)) 
-p <- p + geom_bar(stat="identity") 
+p <- ggplot(data=imputed_steps_per_date, aes(x=steps)) 
+p <- p + geom_histogram() 
 p <- p + xlab("Date")
 p <- p + ylab("Steps")
 p <- p + ggtitle("Total Steps by Day")
@@ -111,6 +115,10 @@ p <- p + theme(
   axis.title = element_text(size=20,face="bold"),
   title = element_text(size=30,face="bold"))
 print(p)
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
